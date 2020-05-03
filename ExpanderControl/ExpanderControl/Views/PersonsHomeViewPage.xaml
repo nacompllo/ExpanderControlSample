@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="#242424"
+             x:Class="ExpanderControl.Views.PersonsHomeViewPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Persons"
+                   Margin="0,20,0,0"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="Start"
+                   TextColor="White"
+                   FontSize="Title"/>
+            <CollectionView ItemsSource="{Binding Persons}"
+                            Margin="10,10,10,10"
+                            SelectionMode="None"  
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            VerticalScrollBarVisibility="Always">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Expander ExpandAnimationEasing="{x:Static Easing.Linear}"
+                                  CollapseAnimationEasing="{x:Static Easing.Linear}"
+                                  IsExpanded="{Binding IsDetailVisible, Mode=TwoWay}">
+                            <Expander.Header>
+                                <Frame HasShadow="False"
+                                       Margin="10,10,0,0"
+                                       BorderColor="#ECECEC"
+                                       BackgroundColor="White"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding Icon}"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Start"
+                                               HeightRequest="50"
+                                               WidthRequest="50"/>
+                                        <Label HorizontalOptions="Start"
+                                               VerticalOptions="Start"
+                                               TextColor="Black"
+                                               FontSize="Medium">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Name}" />
+                                                    <Span Text=" " />
+                                                    <Span Text="{Binding Surname}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </Frame>
+                            </Expander.Header>
+                            <Frame HasShadow="False"
+                                   Margin="10,10,0,20"
+                                   BorderColor="#ECECEC"
+                                   BackgroundColor="White"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row ="0"
+                                       Grid.Column="0"
+                                       Source="email"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="Start"
+                                       HeightRequest="20"
+                                       WidthRequest="20"/>
+                                    <Label Grid.Row ="0"
+                                       Grid.Column="1"
+                                       Text="{Binding Email}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="Start"
+                                       TextColor="Black"
+                                       FontSize="Medium"/>
+                                    <Image Grid.Row ="2"
+                                       Grid.Column="0"
+                                       Source="phone"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="Start"
+                                       HeightRequest="20"
+                                       WidthRequest="20"/>
+                                    <Label Grid.Row ="2"
+                                       Grid.Column="1"
+                                       Text="{Binding Phone}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="Start"
+                                       TextColor="Black"
+                                       FontSize="Medium"/>
+                                </Grid>
+                            </Frame>
+                        </Expander>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
